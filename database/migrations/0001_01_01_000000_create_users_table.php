@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->decimal('balance')->default(0);
+            $table->integer('number_of_points')->default(0)->comment('количество баллов');
             $table->rememberToken();
             $table->timestamps();
         });
