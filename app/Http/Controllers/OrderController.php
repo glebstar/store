@@ -21,7 +21,8 @@ class OrderController extends Controller
             ItemOrder::query()->create([
                 'order_id' => $order->id,
                 'product_id' => $product['id'],
-                'price' => Product::query()->find($product['id'])->price,
+                'price' => Product::query()->find($product['id'])->price * $product['quantity'],
+                'quantity' => $product['quantity'],
             ]);
         }
 
