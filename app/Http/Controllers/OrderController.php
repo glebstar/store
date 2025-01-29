@@ -21,9 +21,9 @@ class OrderController extends Controller
             'status' => Order::STATUSES['PENDING'],
         ]);
 
-        foreach ($request->products as $product) {
-            $product = Product::query()->find($product['id']);
-            if ($product->quantity < $product['quantity']) {
+        foreach ($request->products as $p) {
+            $product = Product::query()->find($p['id']);
+            if ($product->quantity < $p['quantity']) {
                 throw ValidationException::withMessages([
                     'products' => ['На складе недостаточно товара.'],
                 ]);
@@ -31,9 +31,9 @@ class OrderController extends Controller
 
             ItemOrder::query()->create([
                 'order_id' => $order->id,
-                'product_id' => $product['id'],
-                'price' => Product::query()->find($product['id'])->price * $product['quantity'],
-                'quantity' => $product['quantity'],
+                'product_id' => $product->id,
+                'price' => $product->price * $p['quantity'],
+                'quantity' => $p['quantity'],
             ]);
         }
 
