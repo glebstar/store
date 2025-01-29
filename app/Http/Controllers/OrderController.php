@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\ItemOrder;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\ApproveOrderRequest;
 
@@ -39,7 +38,7 @@ class OrderController extends Controller
         }
 
         $order->update([
-            'status' => Order::STATUSES['COMPLETED'],
+            'status' => Order::STATUSES['APPROVED'],
         ]);
 
         return response()->json([

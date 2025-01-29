@@ -10,7 +10,7 @@ class Order extends Model
 {
     public const STATUSES = [
         'PENDING' => 0,
-        'COMPLETED' => 1,
+        'APPROVED' => 1,
     ];
 
     /**
