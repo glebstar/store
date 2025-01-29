@@ -23,7 +23,9 @@ class CreateOrderRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'products' => 'required|array:id,quantity:exists:products,id',
+            'products' => 'required|array',
+            'products.*.id' => 'required|integer|exists:products,id',
+            'products.*.quantity' => 'required|integer|min:1',
         ];
     }
 }
