@@ -23,7 +23,7 @@ class CreateOrderRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'products' => 'required|array',
+            'products' => 'required|array:id:exists:products,id',
         ];
     }
 }
