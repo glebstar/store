@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 use App\Http\Resources\ProductCollection;
@@ -11,3 +12,5 @@ Route::get('/', function () {
 Route::get('/catalog', function () {
     return new ProductCollection(Product::paginate());
 });
+
+Route::post('/create-order', [OrderController::class, 'createOrder']);

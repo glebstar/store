@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Order extends Model
 {
     public const STATUSES = [
-        0 => 'PENDING',
-        1 => 'COMPLETED',
+        'PENDING' => 0,
+        'COMPLETED' => 1,
     ];
 
     /**
