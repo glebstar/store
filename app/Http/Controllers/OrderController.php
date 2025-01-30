@@ -47,7 +47,11 @@ class OrderController extends Controller
         $order = Order::query()->find($request->order_id);
         foreach ($order->items as $item) {
             $order->user->balance -= $item->price;
+            $item->product->decrement('quantity', $item->quantity);
+            $item->product->save();
         }
+
+        $order->user->save();
 
         $order->update([
             'status' => Order::STATUSES['APPROVED'],
